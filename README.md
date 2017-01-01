@@ -55,9 +55,6 @@ Now, we can use the stub code like this:
 
 ```Go
 package main
-
-package main
-
 import (
 	"fmt"
 	"log"
