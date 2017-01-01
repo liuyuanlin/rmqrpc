@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/liuyuanlin/rmqrpc"
+	//	"github.com/liuyuanlin/rmqrpc"
 
 	service "github.com/liuyuanlin/rmqrpc/examples/service.pb"
 )
@@ -27,13 +27,13 @@ func (t *Echo) EchoTwice(args *service.EchoRequest, reply *service.EchoResponse)
 }
 
 func init() {
-	go service.ListenAndServeEchoService("tcp", `127.0.0.1:9527`, new(Echo))
+	go service.StartEchoServiceServer("amqp://guest:guest@localhost:5672/", "", "rpc_queue", new(Echo))
 }
 
 func main() {
-	echoClient, err := service.DialEchoService("tcp", `127.0.0.1:9527`)
-	if err != nil {
-		log.Fatalf("service.DialEchoService: %v", err)
+	echoClient := service.NewEchoServiceClient("amqp://guest:guest@localhost:5672/", "", "rpc_queue")
+	if echoClient == nil {
+		log.Fatalf("service.NewEchoServiceClient:fail")
 	}
 	defer echoClient.Close()
 
@@ -43,19 +43,6 @@ func main() {
 		log.Fatalf("echoClient.EchoTwice: %v", err)
 	}
 	fmt.Println(reply.Msg)
-
-	// or use normal client
-	client, err := protorpc.Dial("tcp", `127.0.0.1:9527`)
-	if err != nil {
-		log.Fatalf("protorpc.Dial: %v", err)
-	}
-	defer client.Close()
-
-	echoClient1 := &service.EchoServiceClient{client}
-	echoClient2 := &service.EchoServiceClient{client}
-	reply, err = echoClient1.EchoTwice(args)
-	reply, err = echoClient2.EchoTwice(args)
-	_, _ = reply, err
 
 	// Output:
 	// 你好, 世界!你好, 世界!
