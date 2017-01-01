@@ -20,3 +20,82 @@ rmqrpc 实现了go语言基于rabbitmq为数据通道和protobuf为载体的远�
 2. `go get github.com/liuyuanlin/rmqrpc/protoc-gen-go`
 3. `go generate github.com/liuyuanlin/protorpc/examples/service.pb`
 4. `go test github.com/liuyuanlin/protorpc/examples/service.pb`
+
+
+
+# Examples
+
+First, create [echo.proto](https://github.com/liuyuanlin/rmqrpc/blob/master/examples/service.pb/echo.proto):
+
+```Proto
+syntax = "proto3";
+
+package service;
+
+message EchoRequest {
+	string msg = 1;
+}
+
+message EchoResponse {
+	string msg = 1;
+}
+
+service EchoService {
+	rpc Echo (EchoRequest) returns (EchoResponse);
+	rpc EchoTwice (EchoRequest) returns (EchoResponse);
+}
+```
+
+Second, generate [echo.pb.go](https://github.com/liuyuanlin/rmqrpc/blob/master/examples/service.pb/echo.pb.go) from [echo.proto]
+
+`protoc --plugin=protoc-gen-go=../../protoc-gen-go/protoc-gen-go --go_out=plugins=rmqrpc:. echo.proto arith.proto`
+
+
+Now, we can use the stub code like this:
+
+```Go
+package main
+
+package main
+
+import (
+	"fmt"
+	"log"
+
+	service "github.com/liuyuanlin/rmqrpc/examples/service.pb"
+)
+
+type Echo int
+
+func (t *Echo) Echo(args *service.EchoRequest, reply *service.EchoResponse) error {
+	reply.Msg = args.Msg
+	return nil
+}
+
+func (t *Echo) EchoTwice(args *service.EchoRequest, reply *service.EchoResponse) error {
+	reply.Msg = args.Msg + args.Msg
+	return nil
+}
+
+func init() {
+	go service.StartEchoServiceServer("amqp://guest:guest@localhost:5672/", "", "rpc_queue", new(Echo))
+}
+
+func main() {
+	echoClient := service.NewEchoServiceClient("amqp://guest:guest@localhost:5672/", "", "rpc_queue")
+	if echoClient == nil {
+		log.Fatalf("service.NewEchoServiceClient:fail")
+	}
+	defer echoClient.Close()
+
+	args := &service.EchoRequest{Msg: "你好, 世界!"}
+	reply, err := echoClient.EchoTwice(args)
+	if err != nil {
+		log.Fatalf("echoClient.EchoTwice: %v", err)
+	}
+	fmt.Println(reply.Msg)
+
+	// Output:
+	// 你好, 世界!你好, 世界!
+}
+```
