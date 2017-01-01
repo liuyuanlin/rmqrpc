@@ -7,9 +7,10 @@ rmqrpc 实现了go语言基于rabbitmq为数据通道和protobuf为载体的远�
 # Install
 ## 1.Install rabbitmq
 安装rabbitmq 最新版本RabbitMQ 3.6.6 release
-参考官网 http://www.rabbitmq.com/download.html
+参考官网 http://www.rabbitmq.com/download.htmlanz
+安装rabbitmq go client package ：`go get github.com/streadway/amqp`
 
-## 2.Install `protorpc` package:
+## 2.Install `rmqrpc` package:
 
 1. `go get github.com/liuyuanlin/rmqrpc`
 2. `go run hello.go`
@@ -46,7 +47,7 @@ service EchoService {
 }
 ```
 
-Second, generate [echo.pb.go](https://github.com/liuyuanlin/rmqrpc/blob/master/examples/service.pb/echo.pb.go) from [echo.proto]
+Second, generate [echo.pb.go](https://github.com/liuyuanlin/rmqrpc/examples/service.pb/echo.pb.go) from [echo.proto]
 
 `protoc --plugin=protoc-gen-go=../../protoc-gen-go/protoc-gen-go --go_out=plugins=rmqrpc:. echo.proto arith.proto`
 
