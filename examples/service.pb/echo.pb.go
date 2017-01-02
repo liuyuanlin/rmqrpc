@@ -2,6 +2,19 @@
 // source: echo.proto
 // DO NOT EDIT!
 
+/*
+Package service is a generated protocol buffer package.
+
+It is generated from these files:
+	echo.proto
+	arith.proto
+
+It has these top-level messages:
+	EchoRequest
+	EchoResponse
+	ArithRequest
+	ArithResponse
+*/
 package service
 
 import proto "github.com/golang/protobuf/proto"
@@ -17,6 +30,12 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type EchoRequest struct {
 	Msg string `protobuf:"bytes,1,opt,name=msg" json:"msg,omitempty"`
 }
@@ -24,7 +43,7 @@ type EchoRequest struct {
 func (m *EchoRequest) Reset()                    { *m = EchoRequest{} }
 func (m *EchoRequest) String() string            { return proto.CompactTextString(m) }
 func (*EchoRequest) ProtoMessage()               {}
-func (*EchoRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
+func (*EchoRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
 func (m *EchoRequest) GetMsg() string {
 	if m != nil {
@@ -40,7 +59,7 @@ type EchoResponse struct {
 func (m *EchoResponse) Reset()                    { *m = EchoResponse{} }
 func (m *EchoResponse) String() string            { return proto.CompactTextString(m) }
 func (*EchoResponse) ProtoMessage()               {}
-func (*EchoResponse) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
+func (*EchoResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
 func (m *EchoResponse) GetMsg() string {
 	if m != nil {
@@ -120,9 +139,9 @@ func (c *EchoServiceClient) EchoTwice(in *EchoRequest) (out *EchoResponse, err e
 	return out, nil
 }
 
-func init() { proto.RegisterFile("echo.proto", fileDescriptor1) }
+func init() { proto.RegisterFile("echo.proto", fileDescriptor0) }
 
-var fileDescriptor1 = []byte{
+var fileDescriptor0 = []byte{
 	// 134 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0xe2, 0x4a, 0x4d, 0xce, 0xc8,
 	0xd7, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2f, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x55,

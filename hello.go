@@ -9,8 +9,6 @@ import (
 	"fmt"
 	"log"
 
-	//	"github.com/liuyuanlin/rmqrpc"
-
 	service "github.com/liuyuanlin/rmqrpc/examples/service.pb"
 )
 

@@ -2,6 +2,19 @@
 // source: echo.proto
 // DO NOT EDIT!
 
+/*
+Package message is a generated protocol buffer package.
+
+It is generated from these files:
+	echo.proto
+	arith.proto
+
+It has these top-level messages:
+	EchoRequest
+	EchoResponse
+	ArithRequest
+	ArithResponse
+*/
 package message
 
 import proto "github.com/golang/protobuf/proto"
@@ -13,18 +26,57 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type EchoRequest struct {
 	Msg string `protobuf:"bytes,1,opt,name=msg" json:"msg,omitempty"`
 }
 
-func (m *EchoRequest) Reset()         { *m = EchoRequest{} }
-func (m *EchoRequest) String() string { return proto.CompactTextString(m) }
-func (*EchoRequest) ProtoMessage()    {}
+func (m *EchoRequest) Reset()                    { *m = EchoRequest{} }
+func (m *EchoRequest) String() string            { return proto.CompactTextString(m) }
+func (*EchoRequest) ProtoMessage()               {}
+func (*EchoRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+func (m *EchoRequest) GetMsg() string {
+	if m != nil {
+		return m.Msg
+	}
+	return ""
+}
 
 type EchoResponse struct {
 	Msg string `protobuf:"bytes,1,opt,name=msg" json:"msg,omitempty"`
 }
 
-func (m *EchoResponse) Reset()         { *m = EchoResponse{} }
-func (m *EchoResponse) String() string { return proto.CompactTextString(m) }
-func (*EchoResponse) ProtoMessage()    {}
+func (m *EchoResponse) Reset()                    { *m = EchoResponse{} }
+func (m *EchoResponse) String() string            { return proto.CompactTextString(m) }
+func (*EchoResponse) ProtoMessage()               {}
+func (*EchoResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+func (m *EchoResponse) GetMsg() string {
+	if m != nil {
+		return m.Msg
+	}
+	return ""
+}
+
+func init() {
+	proto.RegisterType((*EchoRequest)(nil), "message.EchoRequest")
+	proto.RegisterType((*EchoResponse)(nil), "message.EchoResponse")
+}
+
+func init() { proto.RegisterFile("echo.proto", fileDescriptor0) }
+
+var fileDescriptor0 = []byte{
+	// 95 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0xe2, 0x4a, 0x4d, 0xce, 0xc8,
+	0xd7, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0xcf, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0x55,
+	0x92, 0xe7, 0xe2, 0x76, 0x4d, 0xce, 0xc8, 0x0f, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12,
+	0xe0, 0x62, 0xce, 0x2d, 0x4e, 0x97, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x02, 0x31, 0x95, 0x14,
+	0xb8, 0x78, 0x20, 0x0a, 0x8a, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x31, 0x55, 0x24, 0xb1, 0x81, 0x8d,
+	0x34, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xcb, 0xea, 0xe4, 0xa6, 0x60, 0x00, 0x00, 0x00,
+}

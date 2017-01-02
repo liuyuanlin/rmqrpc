@@ -2,19 +2,6 @@
 // source: arith.proto
 // DO NOT EDIT!
 
-/*
-Package service is a generated protocol buffer package.
-
-It is generated from these files:
-	arith.proto
-	echo.proto
-
-It has these top-level messages:
-	ArithRequest
-	ArithResponse
-	EchoRequest
-	EchoResponse
-*/
 package service
 
 import proto "github.com/golang/protobuf/proto"
@@ -30,12 +17,6 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
-
 type ArithRequest struct {
 	A int32 `protobuf:"varint,1,opt,name=a" json:"a,omitempty"`
 	B int32 `protobuf:"varint,2,opt,name=b" json:"b,omitempty"`
@@ -44,7 +25,7 @@ type ArithRequest struct {
 func (m *ArithRequest) Reset()                    { *m = ArithRequest{} }
 func (m *ArithRequest) String() string            { return proto.CompactTextString(m) }
 func (*ArithRequest) ProtoMessage()               {}
-func (*ArithRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*ArithRequest) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 func (m *ArithRequest) GetA() int32 {
 	if m != nil {
@@ -67,7 +48,7 @@ type ArithResponse struct {
 func (m *ArithResponse) Reset()                    { *m = ArithResponse{} }
 func (m *ArithResponse) String() string            { return proto.CompactTextString(m) }
 func (*ArithResponse) ProtoMessage()               {}
-func (*ArithResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*ArithResponse) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 func (m *ArithResponse) GetC() int32 {
 	if m != nil {
@@ -169,9 +150,9 @@ func (c *ArithServiceClient) Error(in *ArithRequest) (out *ArithResponse, err er
 	return out, nil
 }
 
-func init() { proto.RegisterFile("arith.proto", fileDescriptor0) }
+func init() { proto.RegisterFile("arith.proto", fileDescriptor1) }
 
-var fileDescriptor0 = []byte{
+var fileDescriptor1 = []byte{
 	// 159 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0xe2, 0x4e, 0x2c, 0xca, 0x2c,
 	0xc9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2f, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e,
