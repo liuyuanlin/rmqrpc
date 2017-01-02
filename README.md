@@ -7,7 +7,9 @@ rmqrpc 实现了go语言基于rabbitmq为数据通道和protobuf为载体的远�
 # Install
 ## 1.Install rabbitmq
 安装rabbitmq 最新版本RabbitMQ 3.6.6 release
+
 参考官网 http://www.rabbitmq.com/download.htmlanz
+
 安装rabbitmq go client package ：`go get github.com/streadway/amqp`
 
 ## 2.Install `rmqrpc` package:
